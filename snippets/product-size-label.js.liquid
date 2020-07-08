@@ -1,0 +1,24 @@
+<div class="swatch-quick-add">
+    {% assign swatch = product-swatch %}
+    {% assign found_option = false %}
+    {% assign is_color = false %}
+    {% assign option_index = 0 %}
+
+    {% for option in product.options %}
+    {% if option == swatch %}
+        {% assign found_option = true %}
+        {% assign option_index = forloop.index0 %}
+        {% assign downcased_option = swatch | downcase %}
+        {% if downcased_option contains 'color' or downcased_option contains 'colour' %}
+        {% assign is_color = true %}
+        {% endif %}
+    {% endif %}
+    {% endfor %}
+
+    {% for variant in product.variants %}
+        <a data-cart-add="{{ variant.id }}">{{variant.options[option_index]}}</a>
+    {% endfor %}
+</div>
+
+
+

@@ -1,0 +1,45 @@
+<div class="swatch-quick-add mobile">
+    {% assign swatch = product-swatch %}
+    {% assign found_option = false %}
+    {% assign is_color = false %}
+    {% assign is_size = false %}
+    {% assign option_index = 0 %}
+    {% assign size = '' %}
+
+    {% for option in product.options %}
+    {% if option == 'Size' %} 
+        {% assign is_size = true %}
+    {% endif %}
+
+    {% if option == swatch %}
+        {% assign found_option = true %}
+        {% assign option_index = forloop.index0 %}
+        {% assign downcased_option = swatch | downcase %}
+        {% if downcased_option contains 'color' or downcased_option contains 'colour' %}
+        {% assign is_color = true %}
+        {% endif %}
+    {% endif %}
+    {% endfor %}
+
+    {% for variant in product.variants %}
+        {% if is_size == true %}
+            {% case variant.options[option_index] %}
+            {% when 'X-Small' %}
+                {% assign size = 'XS' %}
+            {% when 'Small' %}
+                {% assign size = 'S' %}
+            {% when 'Medium' %}
+                {% assign size = 'M' %}
+            {% when 'Large' %}
+            {% assign size = 'L' %}
+            {% else %}
+            {% assign size = variant.options[option_index] %}
+            {% endcase %}
+            {% if variant.inventory_quantity < 1 %}
+                <a class="add-cart-link none">{{size}}</a>
+            {% else %}
+                <a class="add-cart-link available" data-cart-add="{{ variant.id }}">{{size}}</a>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</div>
