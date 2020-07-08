@@ -50,10 +50,11 @@
 {% assign size8 = '1700x' %}
 {% assign size9 = '1900x' %}
 {% assign size10 = '2000x' %}
-
+  
 <section id="banner-{{ id }}" class="banner full-width--{{ wide_display }}">
   {% if image != nil %}
-    <img  src="{{ image | img_url: '100x', format: 'pjpg' }}"
+  <div class="image-with-text-overlay-img" style="background-image: url({{ image | img_url: default, format: 'pjpg' }});"></div>
+    {% comment %} <img  src="{{ image | img_url: '100x', format: 'pjpg' }}"
           alt="{{ image.alt | escape }}"
           class="lazyload {{ settings.image_loading_style }}"
           sizes="100vw"
@@ -71,7 +72,7 @@
           {{ image | img_url: size9, format: 'pjpg' }} {{size9 | replace: 'x', 'w'}},
           {{ image | img_url: size10, format: 'pjpg' }} {{size10 | replace: 'x', 'w'}}"
 
-           />
+           /> {% endcomment %}
   {% else %}
     {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg placeholder-svg--banner' }}
   {% endif %}

@@ -11125,19 +11125,7 @@ div.breadcrumb-collection+div.section {
     min-height: 20;
   }
 }
-#collection-title {
-  @include respond-to('small-down') {
-    position: fixed;
-    text-align: center;
-    margin: 0 auto;
-    padding: .5rem 0;
-    right: 0;
-    left: 0;
-    top: 39px;
-    background: rgba(255,255,255,0.8);
-    z-index: 9999;
-  }
-}
+
 #shopify-section-collection-template .sidebar-wrap {
   @include respond-to('small-down') {
     display: none !important;
@@ -11149,17 +11137,17 @@ div.breadcrumb-collection+div.section {
   }
 }
 
-#collection-title {
-	//display: none;
+#collection-title { 
 	text-align: left;
-    font-size: 1.2rem;
-    margin-bottom: 0;
-    padding-bottom: 2rem;
+  font-size: 1.2rem;
+  margin-bottom: 0;
+  padding-bottom: 2rem;
 	color: #333;
    @include respond-to('small-down') {
     line-height: auto;
     padding: 0;
     font-size: 1rem;
+    margin-bottom: 1rem;
   }
 }
 .thumbnail-overlay {
@@ -11963,4 +11951,15 @@ body.collection {
 div.section.collection_description {
     margin: 0 0 2rem 0;
     max-width: 800px;
+}
+
+.image-with-text-overlay-img {
+  height: 30vh; 
+  min-height: 500px; 
+  width: 100%; 
+  background-size: cover; 
+  background-position: center;
+  @include respond-to('medium-up'){
+    height: 70vh;
+  }
 }
